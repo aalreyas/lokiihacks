@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Secure Terminal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Portal</title>
 
 <style>
+
 body{
-background:black;
-color:#00ff9c;
-font-family:Courier New, monospace;
+font-family: Arial, sans-serif;
+background:#f5f7fb;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -16,87 +17,76 @@ height:100vh;
 margin:0;
 }
 
-.container{
-border:1px solid #00ff9c;
+.card{
+background:white;
 padding:40px;
-width:320px;
-box-shadow:0 0 15px #00ff9c;
+width:350px;
+border-radius:10px;
+box-shadow:0 8px 25px rgba(0,0,0,0.1);
 text-align:center;
+}
+
+h2{
+margin-bottom:10px;
+color:#333;
+}
+
+p{
+color:#777;
+font-size:14px;
+margin-bottom:25px;
 }
 
 input{
 width:100%;
-padding:10px;
+padding:12px;
 margin:10px 0;
-background:black;
-border:1px solid #00ff9c;
-color:#00ff9c;
+border:1px solid #ddd;
+border-radius:6px;
+font-size:14px;
 }
 
 button{
 width:100%;
-padding:10px;
-background:#00ff9c;
+padding:12px;
+background:#2d6cdf;
 border:none;
+color:white;
 font-weight:bold;
+border-radius:6px;
 cursor:pointer;
 }
 
 button:hover{
-box-shadow:0 0 10px #00ff9c;
+background:#1f52b7;
 }
 
-#output{
+.notice{
 margin-top:15px;
+font-size:12px;
+color:#999;
 }
-</style>
 
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="card">
 
-<h2>SECURE ACCESS TERMINAL</h2>
+<h2>Welcome Back</h2>
+<p>Please sign in to continue</p>
 
-<input type="text" id="username" placeholder="username">
-<input type="password" id="password" placeholder="password">
+<input type="text" placeholder="Username (demo)">
+<input type="password" placeholder="Password (demo)">
 
-<button onclick="saveLogin()">ACCESS</button>
+<button>Sign In</button>
 
-<p id="output"></p>
-
+<div class="notice">
+Demo login page for portfolio purposes
 </div>
 
-<script>
-
-function saveLogin(){
-
-let user = document.getElementById("username").value;
-let pass = document.getElementById("password").value;
-
-/* retrieve previous entries */
-let logins = JSON.parse(localStorage.getItem("loginLogs")) || [];
-
-/* add new entry */
-logins.push({
-username: user,
-password: pass,
-time: new Date().toLocaleString()
-});
-
-/* save back to localStorage */
-localStorage.setItem("loginLogs", JSON.stringify(logins));
-
-document.getElementById("output").innerText = "Credentials logged locally.";
-
-}
-
-/* optional function to view stored entries in console */
-console.log("Stored login attempts:");
-console.log(JSON.parse(localStorage.getItem("loginLogs")));
-
-</script>
+</div>
 
 </body>
 </html>
