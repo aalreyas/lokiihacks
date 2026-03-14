@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Secure Terminal</title>
+
+<style>
+body{
+background:black;
+color:#00ff9c;
+font-family:Courier New, monospace;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.container{
+border:1px solid #00ff9c;
+padding:40px;
+width:320px;
+box-shadow:0 0 15px #00ff9c;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+background:black;
+border:1px solid #00ff9c;
+color:#00ff9c;
+}
+
+button{
+width:100%;
+padding:10px;
+background:#00ff9c;
+border:none;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+box-shadow:0 0 10px #00ff9c;
+}
+
+#output{
+margin-top:15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>SECURE ACCESS TERMINAL</h2>
+
+<input type="text" id="username" placeholder="username">
+<input type="password" id="password" placeholder="password">
+
+<button onclick="saveLogin()">ACCESS</button>
+
+<p id="output"></p>
+
+</div>
+
+<script>
+
+function saveLogin(){
+
+let user = document.getElementById("username").value;
+let pass = document.getElementById("password").value;
+
+/* retrieve previous entries */
+let logins = JSON.parse(localStorage.getItem("loginLogs")) || [];
+
+/* add new entry */
+logins.push({
+username: user,
+password: pass,
+time: new Date().toLocaleString()
+});
+
+/* save back to localStorage */
+localStorage.setItem("loginLogs", JSON.stringify(logins));
+
+document.getElementById("output").innerText = "Credentials logged locally.";
+
+}
+
+/* optional function to view stored entries in console */
+console.log("Stored login attempts:");
+console.log(JSON.parse(localStorage.getItem("loginLogs")));
+
+</script>
+
+</body>
+</html>
